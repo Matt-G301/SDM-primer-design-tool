@@ -1,7 +1,7 @@
 # SDM-primer-design-tool
 Designs PCR primers for using NEBbuilder or similar product (Like VAzymes clone express) for site directed mutagenesis 
 
-1: Simply coppy and paste the gene you wish to mutate into the main window
+1: Simply copy and paste the gene you wish to mutate into the main window
   If nesisary, coppy the DNA sequince upstream and downstream of your gene as well (in the construct you want to mutate)
   
 2: Next click Log Codons/Basses
