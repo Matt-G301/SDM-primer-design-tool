@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it."
+title: "Primer Design Tool for SDM"
+authors:
+  - family-names: "Gilfus"
+    given-names: "Marrett"
+version: 1.0
+date-released: 2026-02-08
+url: "https://github.com/Matt-G301/SDM-primer-design-too"
+license: MIT
