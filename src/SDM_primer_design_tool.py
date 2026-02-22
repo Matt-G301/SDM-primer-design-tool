@@ -372,6 +372,7 @@ tk.Label(root, text="Primer Design Tool For SDM", font=("Arial", 14)).pack(pady=
 tk.Label(root, text="Gene name", font=("Arial", 14)).pack(pady=5)
 gene_name = tk.Text(root, height=10, width=60, font=("Courier", 12))
 gene_name = tk.Entry(width=10)
+gene_name.insert(0, "Mutant")
 gene_name.pack()
 
 # Extra upstream input

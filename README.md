@@ -3,6 +3,8 @@ When using a site directed mutagenesis protocol (SMD) that will end by assemblin
 
 The program is written in python and uses tkinter as its GUI -- for other requirements see requirements.txt, openpyxl is a soft requirement, the program will default to saving your primers to a .csv instead of .xlsx without it. The output does not use any features that require a .xlsx file type, so if you need a .xlsx file later just open the .csv in excel and save as .xlsx.
 
+0: Type the name of your gene into the Gene name box, or leave it as mutant
+
 1: Simply copy and paste the gene you wish to mutate into the main window
 -	If necessary, copy the DNA sequence upstream and downstream of your gene as well (in the construct you want to mutate)
   
