@@ -16,6 +16,7 @@ overlap_seq_L = ""
 highlighted_selection = ""
 replacement_seq = ""
 
+
 CODON_TABLE = {
     # Phenylalanine
     "TTT": "F", "TTC": "F",
@@ -80,7 +81,8 @@ def save_to_memory():
         "downstream": downstream_output.get("1.0", tk.END).strip(),
         "replacement": replacement,
         "original": original_selection,
-        "index": index
+        "index": index,
+        "gene": gene_name.get(),
     })
 
     messagebox.showinfo("Saved", "Current sequences saved to memory.")
@@ -96,9 +98,10 @@ def export_to_excel():
         index = record["index"]
         replacement = record["replacement"]
         original = record["original"]
+        gene = record["gene"]
 
-        name_R = f"{CODON_TABLE.get(original)}_{index}_{CODON_TABLE.get(replacement)}_R"
-        name_F = f"{CODON_TABLE.get(original)}_{index}_{CODON_TABLE.get(replacement)}_F"
+        name_R = f"{gene}_{CODON_TABLE.get(original)}{index}{CODON_TABLE.get(replacement)}_R"
+        name_F = f"{gene}_{CODON_TABLE.get(original)}{index}{CODON_TABLE.get(replacement)}_F"
 
         data.append({"Name": name_R, "Sequence": record["upstream"]})
         data.append({"Name": name_F, "Sequence": record["downstream"]})
@@ -129,30 +132,7 @@ def export_to_excel():
             )
         else:
             messagebox.showerror("Error", f"Failed to export: {str(e)}")
-'''def export_to_excel():
-    if not saved_sequences:
-        messagebox.showwarning("Warning", "No sequences to export.")
-        return
 
-    data = []
-    for record in saved_sequences:
-        index = record["index"]
-        replacement = record["replacement"]
-        original = record["original"]
-
-        name_R = f"{original}_{index}_{replacement}_R"
-        name_F = f"{original}_{index}_{replacement}_F"
-
-        data.append({"Name": name_R, "Sequence": record["upstream"]})
-        data.append({"Name": name_F, "Sequence": record["downstream"]})
-
-    df = pd.DataFrame(data, columns=["Name", "Sequence"])
-    
-    # Save file
-    file_path = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel Files", "*.xlsx")])
-    if file_path:
-        df.to_excel(file_path, index=False)
-        messagebox.showinfo("Success", f"Exported {len(data)//2} sets of primers to Excel.")'''
 
 # Analyze the sequence
 def analyze_sequence():
@@ -389,6 +369,11 @@ root = tk.Tk()
 root.title("Primer Design Tool For SDM")
 tk.Label(root, text="Primer Design Tool For SDM", font=("Arial", 14)).pack(pady=5)
 
+tk.Label(root, text="Gene name", font=("Arial", 14)).pack(pady=5)
+gene_name = tk.Text(root, height=10, width=60, font=("Courier", 12))
+gene_name = tk.Entry(width=10)
+gene_name.pack()
+
 # Extra upstream input
 tk.Label(root, text="Extra Upstream Bases (optional)").pack()
 extra_upstream_frame, extra_upstream_textbox = create_collapsible_section(root, "Extra Upstream DNA")
@@ -404,16 +389,19 @@ tk.Label(root, text="Extra Downstream Bases (optional)").pack()
 extra_downstream_frame, extra_downstream_textbox = create_collapsible_section(root, "Extra Downstream DNA")
 extra_downstream_frame.pack()
 
+# Log button
 tk.Button(root, text="Log Codons/Basses", command=analyze_sequence).pack(pady=5)
 
 # Query Section
 frame_query = tk.Frame(root)
 frame_query.pack(pady=10)
 
+#Loaction selector
 tk.Label(frame_query, text="Location in Gene (number)").grid(row=0, column=0, padx=5)
 entry_index = tk.Entry(frame_query, width=10)
 entry_index.grid(row=0, column=1, padx=5)
 
+#Mode setting
 var_mode = tk.StringVar(value="codon")
 tk.Radiobutton(frame_query, text="Codon", variable=var_mode, value="codon").grid(row=0, column=2)
 tk.Radiobutton(frame_query, text="Base", variable=var_mode, value="base").grid(row=0, column=3)
@@ -446,6 +434,7 @@ entry_replace.grid(row=0, column=6, padx=5)
 button_frame = tk.Frame(root)
 button_frame.pack(pady=5)
 
+#Save and Export buttons
 tk.Button(button_frame, text="Save to Memory", command=save_to_memory).pack(side=tk.LEFT, padx=10)
 tk.Button(button_frame, text="Export to Excel", command=export_to_excel).pack(side=tk.LEFT, padx=10)
 root.mainloop()
