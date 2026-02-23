@@ -3,6 +3,11 @@ When using a site directed mutagenesis protocol (SMD) that will end by assemblin
 
 The program is written in python and uses tkinter as its GUI -- for other requirements see requirements.txt, openpyxl is a soft requirement, the program will default to saving your primers to a .csv instead of .xlsx without it. The output does not use any features that require a .xlsx file type, so if you need a .xlsx file later just open the .csv in excel and save as .xlsx.
 
+0.0: To run in google colab
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
+https://colab.research.google.com/github/Matt-G301/SDM-primer-design-tool/blob/main/Colab_tool.ipynb
+)
+
 0: Type the name of your gene into the Gene name box, or leave it as mutant
 
 1: Simply copy and paste the gene you wish to mutate into the main window
