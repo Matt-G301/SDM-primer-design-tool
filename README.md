@@ -28,4 +28,5 @@ https://colab.research.google.com/github/Matt-G301/SDM-primer-design-tool/blob/m
 4.5: Repeat steps 3-4 for any other mutations you want to make. The original intent with this tool was to allow someone to rapidly design primers for multiple mutants being made from one original plasmid (X number of new plasmids 1 mutation each). It remains ideal for this kind of application, saving time and preventing errors when compared to online tools that require you to copy the upstream and downstream sequence from each mutation you want to make.  
 
 5: When you are ready click "Export to Excel" and save your file. Remember this is only the primers saved in the memory so be sure to save the last one you generated and not just leave it on the screen.
+
 6: The exported list is formatted so that it can be uploaded as DNA oligos to Benchling, and placed as a bulk order from IDT (as a .xlsx file not as a .csv the do not accept that file type) from here you can follow your PCR/SDM protocol as normal
